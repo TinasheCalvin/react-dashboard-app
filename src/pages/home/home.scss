@@ -4,10 +4,14 @@
     .homeContainer {
         flex: 6;
 
-        .widgets {
+        .widgets, .charts {
             display: flex;
             justify-content: space-between;
             padding: 20px;
+        }
+
+        .charts {
+            padding: 5px 20px;
         }
     }
 }
