@@ -1,7 +1,6 @@
 import React from 'react'
 import { AccountBalanceWalletOutlined, KeyboardArrowUp, MonetizationOnOutlined, PersonOutlined, ShoppingCartOutlined } from '@mui/icons-material'
 import './widget.scss'
-import { mergeBreakpointsInOrder } from '@mui/system'
 
 function Widget({type}) {
     let data
