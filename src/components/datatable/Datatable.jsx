@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 // import {userColumns, userRows} from '../../datatablesource'
 import './datatable.scss'
 import { Avatar } from '@mui/material';
+import { Link } from "react-router-dom"
 
 function Datatable() {
     const userColumns = [
@@ -126,7 +127,9 @@ function Datatable() {
     const actionColumn = [{field: "action", headerName: "Action", width: 230, renderCell: () => {
         return (
             <div className='cellAction'>
-                <div className="viewButton">View</div>
+                <Link to="/users/test" style={{textDecoration: 'none'}}>
+                  <div className="viewButton">View</div>
+                </Link>
                 <div className="deleteButton">Delete</div>
             </div>
         )
@@ -134,6 +137,12 @@ function Datatable() {
 
     return (
         <div className="datatable">
+            <div className="datatableTitle">
+              <h2>Add New User</h2>
+              <Link to="/users/new" style={{textDecoration: 'none'}} className="link">
+                Add New
+              </Link>
+            </div>
             <DataGrid
                 rows={userRows}
                 columns={userColumns.concat(actionColumn)}

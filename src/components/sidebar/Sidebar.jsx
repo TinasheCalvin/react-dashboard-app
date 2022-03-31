@@ -1,12 +1,15 @@
 import React from 'react'
 import {AccountCircleOutlined, DashboardCustomizeOutlined, ExitToApp, InsertChart, Inventory2Outlined, LocalShippingOutlined, NotificationsNoneOutlined, PersonOutlineOutlined, PsychologyOutlined, SettingsApplicationsOutlined, SettingsSystemDaydreamOutlined, StoreMallDirectoryOutlined} from '@mui/icons-material';
+import { Link } from "react-router-dom"
 import "./sidebar.scss"
 
 function Sidebar() {
   return (
     <div className='sidebar'>
       <div className="top">
-        <span className="logo">iamcal_vin</span>
+        <Link to="/" style={{textDecoration: 'none'}}>
+          <span className="logo">iamcal_vin</span>
+        </Link>
       </div>
       <hr/>
       <div className="center">
@@ -17,14 +20,18 @@ function Sidebar() {
             <span>Dashboard</span>
           </li>
           <p className="title">LISTS</p>
-          <li>
-            <PersonOutlineOutlined className="icon" />
-            <span>Users</span>
-          </li>
-          <li>
-            <StoreMallDirectoryOutlined className="icon" />
-            <span>Products</span>
-          </li>
+          <Link to="/users" style={{textDecoration: 'none'}}>
+            <li>
+              <PersonOutlineOutlined className="icon" />
+              <span>Users</span>
+            </li>
+          </Link>
+          <Link to="/products" style={{textDecoration: 'none'}}>
+            <li>
+              <StoreMallDirectoryOutlined className="icon" />
+              <span>Products</span>
+            </li>
+          </Link>
           <li>
             <Inventory2Outlined className="icon" />
             <span>Orders</span>
