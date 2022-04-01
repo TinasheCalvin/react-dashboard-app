@@ -1,0 +1,52 @@
+.app.dark {
+    background-color: #21262D;
+    color: rgb(255, 253, 253);
+
+    .table {
+        background-color: #21262D;
+
+        .tableCell, .tableData {
+            color: rgb(236, 222, 222);
+        }
+    }
+
+    .navbar {
+        .search {
+            border-color: rgb(236, 230, 230);
+            
+            input {
+                color: rgb(236, 222, 222);
+            }
+        }
+    }
+
+    .sidebar {
+        background-color: #21262D;
+        color: rgb(255, 253, 253);
+
+        ul{
+            li{
+                &:hover {
+                    background-color: rgb(85, 84, 84);
+                }
+            }
+        }
+    }
+
+    .datatable {
+        .dataGrid {
+            background-color: #21262D;
+            color: rgb(236, 222, 222);
+
+            .deleteButton {
+                color: red;
+                background-color: rgba(255, 0, 0, 0.05);
+            }
+
+            .viewButton {
+                color: darkblue;
+                background-color: rgba(91, 91, 214, 0.281);
+            }
+        }
+    }
+}

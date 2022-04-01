@@ -59,7 +59,7 @@ function DataTable() {
 
     return (
         <div className="dataTable">
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} className="table">
                 <Table sx={{minWidth: 650}}>
                     <TableHead>
                         <TableRow>
@@ -75,18 +75,18 @@ function DataTable() {
                     <TableBody>
                         {rows.map(row => (
                             <TableRow key={row.id}>
-                                <TableCell align="left">{row.id}</TableCell>
-                                <TableCell align="left">
+                                <TableCell className="tableData" align="left">{row.id}</TableCell>
+                                <TableCell className="tableData" align="left">
                                     <div className="cellWrapper">
                                         <img src={row.img} alt="" className="image" />
                                         {row.product}
                                     </div>
                                 </TableCell>
-                                <TableCell align="left">{row.customer}</TableCell>
-                                <TableCell align="left">{row.date}</TableCell>
-                                <TableCell align="left">{row.amount}</TableCell>
-                                <TableCell align="left">{row.method}</TableCell>
-                                <TableCell align="left">
+                                <TableCell className="tableData" align="left">{row.customer}</TableCell>
+                                <TableCell className="tableData" align="left">{row.date}</TableCell>
+                                <TableCell className="tableData" align="left">{row.amount}</TableCell>
+                                <TableCell className="tableData" align="left">{row.method}</TableCell>
+                                <TableCell className="tableData" align="left">
                                     <span className={`status ${row.status}`}>{row.status}</span>
                                 </TableCell>
                             </TableRow>

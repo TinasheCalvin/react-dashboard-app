@@ -1,43 +1,42 @@
-import React from 'react'
-import { DataGrid } from '@mui/x-data-grid';
-// import {userColumns, userRows} from '../../datatablesource'
+import React, { useState } from 'react'
+import { DataGrid } from '@mui/x-data-grid'
 import './datatable.scss'
-import { Avatar } from '@mui/material';
+import { Avatar } from '@mui/material'
 import { Link } from "react-router-dom"
 
-function Datatable() {
-    const userColumns = [
-        { field: "id", headerName: "ID", width: 70 },
-        {
-            field: "user", headerName: "User", width: 230, renderCell: (params)=>{
-                return (
-                    <div className="cellWithImg">
-                        <Avatar src={params.row.img} alt="" className="cellImg"/>
-                        {/* <img scr={require("https://m.media-amazon.com/images/I/81hH5vK-MCL._AC_UY327_FMwebp_QL65_.jpg")} alt="" className="cellImg" /> */}
-                        {params.row.username}
-                    </div>
-                )
-            }
-        },
-        {   field: "email", 
-            headerName: "Email",
-            width: 230 
-        },
-        {   field: "age",
-            headerName: "Age",
-            type: "number",
-            width: 100
-        },
-        {
-            field: "status",
-            headerName: "Status",
-            width: 160,
-            renderCell: (params) => {
-                return (
-                    <div className={`cellWithStatus ${params.row.status}`}>{params.row.status}</div>
-                )
-            }
-        }
+function Datatable({ title, category }) {
+  const userColumns = [
+      { field: "id", headerName: "ID", width: 70 },
+      {
+          field: "user", headerName: "User", width: 230, renderCell: (params)=>{
+              return (
+                  <div className="cellWithImg">
+                      <Avatar src={params.row.img} alt="" className="cellImg"/>
+                      {/* <img scr={require("https://m.media-amazon.com/images/I/81hH5vK-MCL._AC_UY327_FMwebp_QL65_.jpg")} alt="" className="cellImg" /> */}
+                      {params.row.username}
+                  </div>
+              )
+          }
+      },
+      {   field: "email", 
+          headerName: "Email",
+          width: 230 
+      },
+      {   field: "age",
+          headerName: "Age",
+          type: "number",
+          width: 100
+      },
+      {
+          field: "status",
+          headerName: "Status",
+          width: 160,
+          renderCell: (params) => {
+              return (
+                  <div className={`cellWithStatus ${params.row.status}`}>{params.row.status}</div>
+              )
+          }
+      }
     ]
     
     //temporary data
@@ -124,31 +123,39 @@ function Datatable() {
         },
       ];
     
-    const actionColumn = [{field: "action", headerName: "Action", width: 230, renderCell: () => {
+    const actionColumn = [{field: "action", headerName: "Action", width: 230, renderCell: (params) => {
         return (
             <div className='cellAction'>
                 <Link to="/users/test" style={{textDecoration: 'none'}}>
                   <div className="viewButton">View</div>
                 </Link>
-                <div className="deleteButton">Delete</div>
+                <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>Delete</div>
             </div>
         )
     }}]
 
+    // intialising state for the data
+    const [data, setData] = useState(userRows)
+
+    function handleDelete(id) {
+      setData(prevData => prevData.filter(data => data.id !== id))
+    }
+
     return (
         <div className="datatable">
             <div className="datatableTitle">
-              <h2>Add New User</h2>
-              <Link to="/users/new" style={{textDecoration: 'none'}} className="link">
+              <h2>{title}</h2>
+              <Link to={category === "users" ? "/users/new" : "/products/new"} style={{textDecoration: 'none'}} className="link">
                 Add New
               </Link>
             </div>
             <DataGrid
-                rows={userRows}
-                columns={userColumns.concat(actionColumn)}
-                pageSize={8}
-                rowsPerPageOptions={[5]}
-                checkboxSelection
+              className="dataGrid"
+              rows={data}
+              columns={userColumns.concat(actionColumn)}
+              pageSize={8}
+              rowsPerPageOptions={[5]}
+              checkboxSelection
             />
         </div>
     )
